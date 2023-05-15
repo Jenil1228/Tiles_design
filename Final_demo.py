@@ -10,6 +10,7 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
 
+#json_path='C:/Users/JENILPATEL/Desktop/royal_demo/project-e3a05-88282a7bc99f.json'
 json_path="/home/ubuntu/demo/Tiles_design/project-e3a05-88282a7bc99f.json"
 
 fs = gcsfs.GCSFileSystem(token= json_path, project='project')
@@ -24,10 +25,13 @@ firebase_admin.initialize_app(cred, name = 'database')
 
 firebase_admin.initialize_app(cred, {'databaseURL' : 'https://project-e3a05-default-rtdb.asia-southeast1.firebasedatabase.app/'})
 ref = db.reference('recommendation/')
+History = ref.child('History')
 button_ref = ref.child('buttonValue')
 recom_ref = ref.child('values')
-
 def progm():
+    History.set({
+        'user_data' : '0'
+        })
     button_ref.set({
         'Input' : 2,
         'flag': "false",
@@ -147,12 +151,17 @@ def progm():
                     'flag': "false"
                     })
                 full_history=full_history+history
+                hist = ', '.join(str(e) for e in full_history)
+                History.set({
+                    'user_data' : hist
+                    })
+                
                 print(full_history)
                 del history[:]
     
             elif(inp==0 and flag == "true"): #inp == 0 and flag == True
                 print('\n \n start value: ', start)
-                #history.pop()
+                history.pop()
                 button_ref.update({'flag': "false"})
                 break
                 
