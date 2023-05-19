@@ -28,15 +28,16 @@ ref = db.reference('recommendation/')
 History = ref.child('History')
 button_ref = ref.child('buttonValue')
 recom_ref = ref.child('values')
+')
 def progm():
     History.set({
-        'user_data' : '0'
+        'user_data' : '0',
+        'Wflag' : 'false'
         })
     button_ref.set({
         'Input' : 2,
         'flag': "false",
-        'Dflag' : 'false',
-        'Wflag' : 'false',
+        'Dflag' : 'false'
         })
     inp_temp= ref.child("buttonValue").get()
     Dflag = (list(inp_temp.values())[0])
@@ -134,7 +135,7 @@ def progm():
             inp_temp= ref.child("buttonValue").get()
             Dflag = (list(inp_temp.values())[0])
             inp = (list(inp_temp.values())[1])
-            flag = (list(inp_temp.values())[3])
+            flag = (list(inp_temp.values())[2])
             present=0
             prev=index_value
             
@@ -149,13 +150,13 @@ def progm():
             
             if(inp==5 and flag == "true"):
                 button_ref.update({
-                    'flag': "false",
-                    'Wflag': "true"
+                    'flag': "false"
                     })
                 full_history=full_history+history
                 hist = ', '.join(str(e) for e in full_history)
                 History.set({
-                    'user_data' : hist
+                    'user_data' : hist,
+                    'Wflag' : "true"
                     })
                 
                 print(full_history)
