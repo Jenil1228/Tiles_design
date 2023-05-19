@@ -28,7 +28,6 @@ ref = db.reference('recommendation/')
 History = ref.child('History')
 button_ref = ref.child('buttonValue')
 recom_ref = ref.child('values')
-')
 def progm():
     History.set({
         'user_data' : '0',
