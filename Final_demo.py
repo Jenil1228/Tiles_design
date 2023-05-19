@@ -35,7 +35,8 @@ def progm():
     button_ref.set({
         'Input' : 2,
         'flag': "false",
-        'Dflag' : 'false'
+        'Dflag' : 'false',
+        'Wflag' : 'false',
         })
     inp_temp= ref.child("buttonValue").get()
     Dflag = (list(inp_temp.values())[0])
@@ -133,7 +134,7 @@ def progm():
             inp_temp= ref.child("buttonValue").get()
             Dflag = (list(inp_temp.values())[0])
             inp = (list(inp_temp.values())[1])
-            flag = (list(inp_temp.values())[2])
+            flag = (list(inp_temp.values())[3])
             present=0
             prev=index_value
             
@@ -148,7 +149,8 @@ def progm():
             
             if(inp==5 and flag == "true"):
                 button_ref.update({
-                    'flag': "false"
+                    'flag': "false",
+                    'Wflag': "true"
                     })
                 full_history=full_history+history
                 hist = ', '.join(str(e) for e in full_history)
@@ -157,6 +159,7 @@ def progm():
                     })
                 
                 print(full_history)
+                del full_history[:]
                 del history[:]
     
             elif(inp==0 and flag == "true"): #inp == 0 and flag == True
