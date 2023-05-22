@@ -163,7 +163,7 @@ def progm():
     
             elif(inp==0 and flag == "true"): #inp == 0 and flag == True
                 print('\n \n start value: ', start)
-                history.pop()
+                
                 button_ref.update({'flag': "false"})
                 break
                 
