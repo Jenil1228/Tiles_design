@@ -5,7 +5,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from google.cloud import storage
 import gcsfs
-from sklearn.metrics import classification_report
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
@@ -193,7 +192,7 @@ def progm():
                 
                 
                 output=knn_model.predict(input_pred)
-                print(classification_report(y_test, output))
+                
                 output=output[0]
                 #output=df['SR NO'][output]
                 output2=0
@@ -219,8 +218,8 @@ def progm():
                     index_value=list(df_mini['SR_NO']).index(start)
                     print('\nThis is value  of random start value: ', start)
     
-                #recom_ref.update({'initial': int(prev)})
-                recom_ref.update({'recommendation': int(start)})
+                recom_ref.update({'initial': int(prev)})
+                #recom_ref.update({'recommendation': int(start)})
                 button_ref.update({
                     'flag': "false"
                     })
